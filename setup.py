@@ -19,7 +19,7 @@ def read_requirements(path):
     ]
 
 setup(
-    name="siyi",
+    name="siyi_sdk",
     version="0.0.1",
     description="Python package implementation for Siyi SDK",
     url="https://github.com/aimas-lund/siyi_sdk_ros2_submodule",
