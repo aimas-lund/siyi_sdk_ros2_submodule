@@ -26,7 +26,7 @@ setup(
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     author="Aimas Lund",
-    packages=find_packages(exclude=[".github"]),
+    packages=find_packages(exclude=["*/test",".github"]),
     platforms=["Linux"],
     python_requires=">=3.9",
     install_requires=read_requirements("requirements.txt"),

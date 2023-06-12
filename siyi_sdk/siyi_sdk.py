@@ -7,10 +7,10 @@ Copyright 2022
 
 """
 import socket
-from sdk.siyi_message import *
+from siyi_sdk.siyi_message import *
 from time import sleep, time
 import logging
-from sdk.utils import  toInt
+from siyi_sdk.utils import  toInt
 import threading
 
 
