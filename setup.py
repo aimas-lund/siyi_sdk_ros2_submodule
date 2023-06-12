@@ -2,8 +2,6 @@ import io
 import os
 from setuptools import find_packages, setup
 
-project_name = "siyi_sdk"
-
 def read(*paths, **kwargs):
     content = ""
     with io.open(
@@ -21,13 +19,15 @@ def read_requirements(path):
     ]
 
 setup(
-    name=project_name,
+    name="siyi_sdk",
     version="0.0.1",
-    description="TODO:",
+    description="Python package implementation for Siyi SDK",
     url="https://github.com/aimas-lund/siyi_sdk_ros2_submodule",
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     author="Aimas Lund",
     packages=find_packages(exclude=[".github"]),
+    platforms=["Linux"],
+    python_requires=">=3.9",
     install_requires=read_requirements("requirements.txt"),
 )
