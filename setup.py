@@ -1,0 +1,33 @@
+import io
+import os
+from setuptools import find_packages, setup
+
+project_name = "siyi_sdk"
+
+def read(*paths, **kwargs):
+    content = ""
+    with io.open(
+        os.path.join(os.path.dirname(__file__), *paths),
+        encoding=kwargs.get("encoding", "utf8"),
+    ) as open_file:
+        content = open_file.read().strip()
+    return content
+
+def read_requirements(path):
+    return [
+        line.strip()
+        for line in read(path).split("\n")
+        if not line.startswith(('"', "#", "-", "git+"))
+    ]
+
+setup(
+    name=project_name,
+    version="0.0.1",
+    description="TODO:",
+    url="https://github.com/aimas-lund/siyi_sdk_ros2_submodule",
+    long_description=read("README.md"),
+    long_description_content_type="text/markdown",
+    author="Aimas Lund",
+    packages=find_packages(exclude=[".github"]),
+    install_requires=read_requirements("requirements.txt"),
+)
