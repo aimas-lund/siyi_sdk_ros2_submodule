@@ -20,6 +20,11 @@ Python implementation of SIYI SDK for communication with ZR10 and A8 Mini camera
   * Netmask `255.255.255.0`
 * Done. 
 
+## Install as a python package
+```bash
+pip install git+https://github.com/aimas-lund/siyi_sdk_ros2_submodule
+```
+
 # Usage
 * Check the scripts in the `siyi_sdk/tests` directory to learn how to use the SDK
 
