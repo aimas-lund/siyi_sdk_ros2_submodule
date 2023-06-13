@@ -416,6 +416,19 @@ class SIYISDK:
             return False
         return True
 
+    def requestAbsZoom(self, zoom_level:int, frac_zoom_level:int):
+        """
+        Sends a request for absolute zoom
+
+        Returns
+        --
+        [bool] True: success. False: fail
+        """
+        msg = self._out_msg.absZoomMsg(zoom_level, frac_zoom_level)
+        if not self.sendMsg(msg):
+            return False
+        return True
+
     def requestLongFocus(self):
         """
         Sends request for manual focus, long shot
@@ -780,6 +793,30 @@ class SIYISDK:
             self.requestGimbalSpeed(y_speed_sp, p_speed_sp)
 
             sleep(0.1) # command frequency
+
+    def setZoomLevel(self, zoom_lvl, err_thresh=1.0, freq=0.01):
+        if (zoom_lvl < 1 or zoom_lvl > 30):
+            self._logger.error("Desired zoom level is outside optical zoom range.")
+            return
+        
+        self.requestZoomHold()  # command the camera to perform some zoom action. Otherwise, getZoomLevel will return -1
+        sleep(1)  # wait for zoom hold to succesfully complete
+
+        while(True):
+            zoom = self.getZoomLevel()
+
+            if (abs(zoom_lvl - zoom) <= err_thresh):
+                self._logger.info(f"Zoom set succesfully to {zoom_lvl} +/- {err_thresh}")
+                self.requestZoomHold()
+                break
+            
+            if (zoom_lvl < zoom): # Zoom out
+                self.requestZoomOut()
+            else: # Zoom in
+                self.requestZoomIn()
+
+            print(f"Current zoom level: {zoom}")
+            sleep(freq)
 
 def test():
     cam=SIYISDK(debug=False)
