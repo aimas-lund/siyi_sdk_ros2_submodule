@@ -763,7 +763,7 @@ class SIYISDK:
             self._last_att_seq = self._att_msg.seq
 
             yaw_err = -yaw + self._att_msg.yaw # NOTE for some reason it's reversed!!
-            pitch_err = pitch - self._att_msg.pitch
+            pitch_err = -pitch + self._att_msg.pitch
 
             self._logger.debug("yaw_err= %s", yaw_err)
             self._logger.debug("pitch_err= %s", pitch_err)
