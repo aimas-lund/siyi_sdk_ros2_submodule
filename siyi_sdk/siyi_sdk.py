@@ -743,11 +743,11 @@ class SIYISDK:
         err_thresh: [float] acceptable error threshold, in degrees, to stop correction
         kp [float] proportional gain
         """
-        if (pitch >25 or pitch <-90):
+        if (pitch >45 or pitch <-135):
             self._logger.error("desired pitch is outside controllable range -90~25")
             return
 
-        if (yaw >45 or yaw <-45):
+        if (yaw >160 or yaw <-160):
             self._logger.error("Desired yaw is outside controllable range -45~45")
             return
 
