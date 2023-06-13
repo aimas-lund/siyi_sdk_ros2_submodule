@@ -95,6 +95,7 @@ class COMMAND:
     FUNC_FEEDBACK_INFO = '0b'
     PHOTO_VIDEO_HDR = '0c'
     ACQUIRE_GIMBAL_ATT = '0d'
+    ABSOLUTE_ZOOM = '0f'
 
 
 #############################################
@@ -469,4 +470,24 @@ class SIYIMESSAGE:
         data2=toHex(pitch_speed, 8)
         data=data1+data2
         cmd_id = COMMAND.GIMBAL_ROT
+        return self.encodeMsg(data, cmd_id)
+
+def absZoomMsg(self, zoom_level:int, frac_zoom_level:int):
+        """
+        Use Absolute zoom
+        """
+        if zoom_level>30:
+            zoom_level=30
+        if zoom_level<1:
+            zoom_level=1
+        
+        if frac_zoom_level>9:
+            zoom_level=9
+        if frac_zoom_level<0:
+            zoom_level=0
+
+        data1=toHex(zoom_level, 8)
+        data2=toHex(frac_zoom_level, 8)
+        data=data1+data2
+        cmd_id = COMMAND.ABSOLUTE_ZOOM
         return self.encodeMsg(data, cmd_id)
