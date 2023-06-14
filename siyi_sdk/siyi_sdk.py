@@ -425,6 +425,12 @@ class SIYISDK:
         [bool] True: success. False: fail
         """
         msg = self._out_msg.absZoomMsg(zoom_level, frac_zoom_level)
+
+        #msg = "5566010100000005018d64"
+        # msg = "556601020001000f040560bb"
+
+        # msg = "5566010000000016b2a6"
+
         if not self.sendMsg(msg):
             return False
         return True

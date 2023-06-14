@@ -9,13 +9,12 @@ All rights reserved 2022
 import sys
 import os
 from time import sleep
+from siyi_sdk.siyi_sdk import SIYISDK
   
 current = os.path.dirname(os.path.realpath(__file__))
 parent_directory = os.path.dirname(current)
   
 sys.path.append(parent_directory)
-
-from siyi_sdk import SIYISDK
 
 def test():
     cam = SIYISDK(server_ip="192.168.144.25", port=37260)
@@ -35,6 +34,8 @@ def test():
     val = cam.requestZoomHold()
     sleep(1)
     print("Zoom level: ", cam.getZoomLevel())
+
+    # cam.requestAbsZoom(4,5)
 
     cam.disconnect()
 
