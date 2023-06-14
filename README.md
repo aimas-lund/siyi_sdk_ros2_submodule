@@ -1,12 +1,18 @@
 # siyi_sdk
-Python implementation of SIYI SDK for communication with ZR10 and A8 Mini cameras
+Python implementation of SIYI SDK for communication with ZR30 and A8 Mini cameras
 
+NOTE: This modification of the siyi_sdk is supposed to be installed as a python package with pip.
+## Install as a python package
+```bash
+pip install git+https://github.com/aimas-lund/siyi_sdk_ros2_submodule
+```
 
-* Camera webpage: http://en.siyi.biz/en/Gimbal%20Camera/ZR10/overview/
-* Documentation: http://en.siyi.biz/en/Gimbal%20Camera/ZR10/download/
+If installing a specific branch other than the default (main) branch, use the following command:
+```bash
+pip install git+https://github.com/aimas-lund/siyi_sdk_ros2_submodule@<branch_name>
+```
 
-**If you find this code useful, kindly give a STAR to this repository. Thanks!**
-
+<b>BELOW IS THE ORIGINAL README OF SIYI_SDK</b>
 # Setup
 * Clone this package
     ```bash
@@ -19,11 +25,6 @@ Python implementation of SIYI SDK for communication with ZR10 and A8 Mini camera
   * Gateway `192.168.144.25`
   * Netmask `255.255.255.0`
 * Done. 
-
-## Install as a python package
-```bash
-pip install git+https://github.com/aimas-lund/siyi_sdk_ros2_submodule
-```
 
 # Usage
 * Check the scripts in the `siyi_sdk/tests` directory to learn how to use the SDK
