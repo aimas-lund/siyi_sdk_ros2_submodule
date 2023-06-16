@@ -805,6 +805,9 @@ class SIYISDK:
             self._logger.error("Desired zoom level is outside optical zoom range.")
             return
         
+        if (zoom_lvl in [1, 30]):
+            err_thresh = 0.0 # if zooming to the extremes, don't wait for error threshold
+        
         self.requestZoomHold()  # command the camera to perform some zoom action. Otherwise, getZoomLevel will return -1
         sleep(1)  # wait for zoom hold to succesfully complete
 
