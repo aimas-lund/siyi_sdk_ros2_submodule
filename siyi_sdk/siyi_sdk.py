@@ -424,6 +424,10 @@ class SIYISDK:
         --
         [bool] True: success. False: fail
         """
+        if ((zoom_level not in range(1, 31)) or (frac_zoom_level not in range(0, 10))):
+            self._logger.error("Zoom level is out of range")
+            return False
+
         msg = self._out_msg.absZoomMsg(zoom_level, frac_zoom_level)
 
         #msg = "5566010100000005018d64"
@@ -782,7 +786,7 @@ class SIYISDK:
             self._last_att_seq = self._att_msg.seq
 
             yaw_err = -yaw + self._att_msg.yaw # NOTE for some reason it's reversed!!
-            pitch_err = -pitch + self._att_msg.pitch # NOTE for some reason it's reversed!!
+            pitch_err = pitch - self._att_msg.pitch 
 
             self._logger.debug("yaw_err= %s", yaw_err)
             self._logger.debug("pitch_err= %s", pitch_err)
