@@ -13,6 +13,7 @@ import logging
 from siyi_sdk.utils import  toInt
 import threading
 
+_ACTUATION_TIMEOUT_SEC = 5.0
 
 class SIYISDK:
     def __init__(self, server_ip="192.168.144.25", port=37260, debug=False):
@@ -776,7 +777,9 @@ class SIYISDK:
 
         th = err_thresh
         gain = kp
-        while(True):
+        start = time()
+
+        while(time() - start < _ACTUATION_TIMEOUT_SEC):
             self.requestGimbalAttitude()
             if self._att_msg.seq==self._last_att_seq:
                 self._logger.info("Did not get new attitude msg")
@@ -804,6 +807,10 @@ class SIYISDK:
 
             sleep(0.1) # command frequency
 
+        if (time() - start >= _ACTUATION_TIMEOUT_SEC):
+            self._logger.error("Gimbal rotation timeout")
+
+
     def setZoomLevel(self, zoom_lvl, err_thresh=1.0, freq=0.01):
         if (zoom_lvl < 1 or zoom_lvl > 30):
             self._logger.error("Desired zoom level is outside optical zoom range.")
@@ -814,8 +821,9 @@ class SIYISDK:
         
         self.requestZoomHold()  # command the camera to perform some zoom action. Otherwise, getZoomLevel will return -1
         sleep(1)  # wait for zoom hold to succesfully complete
-
-        while(True):
+        
+        start = time()
+        while(time() - start < _ACTUATION_TIMEOUT_SEC):
             zoom = self.getZoomLevel()
 
             if (abs(zoom_lvl - zoom) <= err_thresh):
@@ -830,6 +838,9 @@ class SIYISDK:
 
             print(f"Current zoom level: {zoom}")
             sleep(freq)
+        
+        if (time() - start >= _ACTUATION_TIMEOUT_SEC):
+            self._logger.error("Zoom timeout")
 
 def test():
     cam=SIYISDK(debug=False)
