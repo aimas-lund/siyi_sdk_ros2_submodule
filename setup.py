@@ -20,7 +20,7 @@ def read_requirements(path):
 
 setup(
     name="siyi_sdk",
-    version="1.0.0",
+    version="1.0.1",
     description="Python package implementation for Siyi SDK with extended functionalities for the SIYI ZR30 camera.",
     url="https://github.com/aimas-lund/siyi_sdk_ros2_submodule",
     long_description=read("README.md"),
