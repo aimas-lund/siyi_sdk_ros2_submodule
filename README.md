@@ -1,4 +1,4 @@
-# siyi_sdk
+# siyi_sdk python package
 Python implementation of SIYI SDK for communication with ZR30 and A8 Mini cameras
 
 NOTE: This modification of the siyi_sdk is supposed to be installed as a python package with pip.
@@ -11,6 +11,9 @@ If installing a specific branch other than the default (main) branch, use the fo
 ```bash
 pip install git+https://github.com/aimas-lund/siyi_sdk_ros2_submodule@<branch_name>
 ```
+
+## Use the package
+Import and instatiate the ```SIYISDK``` object in the ```siyi_sdk.py``` file. Once instatiated, the object will create the necessary connections and handle callouts to the camera. See the associated ```request*``` and ```set*``` methods, to see request actuation to the camera.
 
 <b>BELOW IS THE ORIGINAL README OF SIYI_SDK</b>
 # Setup
